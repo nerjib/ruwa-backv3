@@ -10,7 +10,7 @@ const app = express();
 const multer = require('multer');
 const cloudinary = require('cloudinary');
 const Estimator = require('./src/controllers/estimator')
-const Activity= require('./src/controllers/activity')
+//const Activity= require('./src/controllers/activity')
 const Users= require('./src/controllers/users')
 const Projects= require('./src/controllers/projects')
 const Analytics = require('./src/controllers/analytics');
@@ -91,7 +91,7 @@ app.use('/api/v1/analytics', Analytics);
 app.use('/api/v2/analytics', Analytics2);
 
 
-app.get('/api/v1/ggg/:id', Activity.getUser)
+//app.get('/api/v1/ggg/:id', Activity.getUser)
   
 app.post('/api/v1/update2', upload.single('image'), (req, res) => {
     // console.log(req.body)
