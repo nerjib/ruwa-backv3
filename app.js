@@ -17,6 +17,7 @@ const Analytics = require('./src/controllers/analytics');
 const Analytics2 = require('./src/controllers/analytics2');
 const Activity = require('./src/controllers/activitiesform')
 const ChangeOfLocation = require('./src/controllers/changeLocation')
+const Contractors = require('./src/controllers/contractors');
 
 
 
@@ -91,6 +92,8 @@ app.use('/api/v1/projects', Projects);
 app.use('/api/v1/analytics', Analytics);
 app.use('/api/v2/analytics', Analytics2);
 app.use('/api/v1/changeoflocation', ChangeOfLocation);
+app.use('/api/v1/contractors', Contractors);
+
 
 
 //app.get('/api/v1/ggg/:id', Activity.getUser)
