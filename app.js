@@ -25,6 +25,8 @@ const Training = require('./src/controllers/training')
 const Reports = require('./src/controllers/reports');
 const Update = require('./src/controllers/updates')
 const VLC = require('./src/controllers/vlc')
+const SupaInfo = require('./src/controllers/supervisorinfo')
+
 
 
 
@@ -110,6 +112,8 @@ app.use('/api/v1/training', Training);
 app.use('/api/v1/reports', Reports);
 app.use('/api/v1/vlc', VLC);
 app.use('/api/v1/update', Update);
+app.use('/api/v1/superinfo', SupaInfo);
+
 
 
 
