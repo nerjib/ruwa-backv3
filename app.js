@@ -18,6 +18,8 @@ const Analytics2 = require('./src/controllers/analytics2');
 const Activity = require('./src/controllers/activitiesform')
 const ChangeOfLocation = require('./src/controllers/changeLocation')
 const Contractors = require('./src/controllers/contractors');
+const Monitors = require('./src/controllers/monitors')
+const MonitorsRep = require('./src/controllers/monitorsReport')
 
 
 
@@ -93,6 +95,8 @@ app.use('/api/v1/analytics', Analytics);
 app.use('/api/v2/analytics', Analytics2);
 app.use('/api/v1/changeoflocation', ChangeOfLocation);
 app.use('/api/v1/contractors', Contractors);
+app.use('/api/v1/monitors', Monitors);
+app.use('/api/v1/monitorsreports', MonitorsRep);
 
 
 
