@@ -15,6 +15,8 @@ const Users= require('./src/controllers/users')
 const Projects= require('./src/controllers/projects')
 const Analytics = require('./src/controllers/analytics');
 const Analytics2 = require('./src/controllers/analytics2');
+const Activity = require('./src/controllers/activitiesform')
+
 
 
 
@@ -100,5 +102,60 @@ app.post('/api/v1/update2', upload.single('image'), (req, res) => {
        });
      });
   
+     app.post('/api/v1/activityform', upload.single('image'), (req, res) => {
+      // console.log(req.body)
+        cloudinary.uploader.upload(req.file.path, function (result) {
+           console.log(result.secure_url)
+          // res.send({imgurl:result.secure_url})
+          Activity.createReport(req, res, result.secure_url);
+         });
+       });
+       
+       app.post('/api/v1/weeklyactivityform', upload.single('image'), (req, res) => {
+         // console.log(req.body)
+           cloudinary.uploader.upload(req.file.path, function (result) {
+              console.log(result.secure_url)
+             // res.send({imgurl:result.secure_url})
+             Activity.createWeeklyReport(req, res, result.secure_url);
+            });
+          });
+        
+       app.post('/api/v1/upload', upload.single('image'), (req, res) => {
+        // console.log(req.body)
+          cloudinary.uploader.upload(req.file.path, function (result) {
+           //  console.log(result.secure_url)
+             res.send({imgurl:result.secure_url})
+         //   Activity.createReport(req, res, result.secure_url);
+           });
+         });
+       
+     app.post('/api/v1/activityform1', (req, res) => {
+          Activity.createActivity(req, res);
+       });
+     
+       app.post('/api/v1/weeklyactivityform1', (req, res) => {
+         Activity.createWeeklyActivity(req, res);
+      });
+     
+     //Change daily report image
+      app.post('/api/v1/updatedailyreport', upload.single('image'), (req, res) => {
+       // console.log(req.body)
+         cloudinary.uploader.upload(req.file.path, function (result) {
+            console.log(result.secure_url)
+           // res.send({imgurl:result.secure_url})
+           Activity.UpdateDailyReport(req, res, result.secure_url);
+          });
+        });
+     
+        app.post('/api/v1/updateweeklyreport', upload.single('image'), (req, res) => {
+         // console.log(req.body)
+           cloudinary.uploader.upload(req.file.path, function (result) {
+              console.log(result.secure_url)
+             // res.send({imgurl:result.secure_url})
+             Activity.UpdateWeeklyReport(req, res, result.secure_url);
+            });
+          });
+       
+     
     
 module.exports = app;

@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 const router = express.Router();
 
 
-const db = require('../dbs/index');
+const db = require('../db/index');
 
 async function createReport(req, res, gifUrl) {
     const createUser = `INSERT INTO
