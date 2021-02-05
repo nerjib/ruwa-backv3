@@ -13,6 +13,9 @@ const Estimator = require('./src/controllers/estimator')
 const Activity= require('./src/controllers/activity')
 const Users= require('./src/controllers/users')
 const Projects= require('./src/controllers/projects')
+const Analytics = require('./src/controllers/analytics');
+const Analytics2 = require('./src/controllers/analytics2');
+
 
 
 
@@ -82,6 +85,9 @@ res.json({
 app.use('/api/v1/', Estimator);
 app.use('/api/v1/users', Users);
 app.use('/api/v1/projects', Projects);
+app.use('/api/v1/analytics', Analytics);
+app.use('/api/v2/analytics', Analytics2);
+
 
 app.get('/api/v1/ggg/:id', Activity.getUser)
   
