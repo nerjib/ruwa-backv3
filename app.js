@@ -20,6 +20,9 @@ const ChangeOfLocation = require('./src/controllers/changeLocation')
 const Contractors = require('./src/controllers/contractors');
 const Monitors = require('./src/controllers/monitors')
 const MonitorsRep = require('./src/controllers/monitorsReport')
+const Phases = require('./src/controllers/phases')
+const Training = require('./src/controllers/training')
+
 
 
 
@@ -97,6 +100,8 @@ app.use('/api/v1/changeoflocation', ChangeOfLocation);
 app.use('/api/v1/contractors', Contractors);
 app.use('/api/v1/monitors', Monitors);
 app.use('/api/v1/monitorsreports', MonitorsRep);
+app.use('/api/v1/phases', Phases);
+app.use('/api/v1/training', Training);
 
 
 
