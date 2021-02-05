@@ -12,6 +12,8 @@ const cloudinary = require('cloudinary');
 const Estimator = require('./src/controllers/estimator')
 const Activity= require('./src/controllers/activity')
 const Users= require('./src/controllers/users')
+const Projects= require('./src/controllers/projects')
+
 
 
 const Request = require('./src/middleware/requestlog')
@@ -79,6 +81,7 @@ res.json({
 
 app.use('/api/v1/', Estimator);
 app.use('/api/v1/users', Users);
+app.use('/api/v1/projects', Projects);
 
 app.get('/api/v1/ggg/:id', Activity.getUser)
   
