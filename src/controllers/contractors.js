@@ -31,6 +31,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/progress/:phase', async (req, res) => {
+  const getAllQ = `select  contractors.company,contractors.id, avg(projects.totalcov) from projects left join contractors on projects.contractor_id=contractors.id  where projects.phase=$1  group by contractors.id, contractors.company order by contractors.company asc`;
+  try {
+    // const { rows } = qr.query(getAllQ);
+    const { rows } = await db.query(getAllQ,[req.params.phase]);
+    return res.status(201).send(rows);
+  } catch (error) {
+    if (error.routine === '_bt_check_unique') {
+      return res.status(400).send({ message: 'User with that EMAIL already exist' });
+    }
+    return res.status(400).send(`${error} jsh`);
+  }
+});  
 
 //insert users
 router.post('/', async (req, res) => {
