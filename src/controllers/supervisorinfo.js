@@ -19,7 +19,7 @@ const db = require('../db/index');
   });  
   
   router.get('/local/:phase', async (req, res) => {
-    const getAllQ = `select users.id,users.first_name, users.last_name, users.other_name, projects.title, projects.lot, avg(projects.totalcov), users.actno, users.bank from projects left join users on projects.local_id=users.id  where projects.phase=$1  group by users.id projects.title, projects.lot, users.actno, users.bank, users.first_name, users.last_name, users.other_name order by projects.title asc,users.id asc, projects.lot asc`;
+    const getAllQ = `select users.id,users.first_name, users.last_name, users.other_name, projects.title, projects.lot, avg(projects.totalcov), users.actno, users.bank from projects left join users on projects.local_id=users.id  where projects.phase=$1  group by users.id, projects.title, projects.lot, users.actno, users.bank, users.first_name, users.last_name, users.other_name order by projects.title asc,users.id asc, projects.lot asc`;
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ,[req.params.phase]);
