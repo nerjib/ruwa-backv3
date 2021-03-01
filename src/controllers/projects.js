@@ -18,10 +18,10 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/vipgps', async (req, res) => {
-  const getAllQ = 'SELECT community,ward,lga,gps,status FROM projects where title=$1 order by id desc';
+  const getAllQ = 'SELECT community,ward,lga,gps,status FROM projects where title=$1 and gps!=$2 order by id desc';
   try {
     // const { rows } = qr.query(getAllQ);
-    const { rows } = await db.query(getAllQ,['Sanitation']);
+    const { rows } = await db.query(getAllQ,['Sanitation',null]);
     return res.status(201).json(rows);
   } catch (error) {
     if (error.routine === '_bt_check_unique') {
