@@ -17,6 +17,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/vipgps', async (req, res) => {
+  const getAllQ = 'SELECT community,ward,lga,gps,status FROM projects where title=$1 order by id desc';
+  try {
+    // const { rows } = qr.query(getAllQ);
+    const { rows } = await db.query(getAllQ,['Sanitation']);
+    return res.status(201).json(rows);
+  } catch (error) {
+    if (error.routine === '_bt_check_unique') {
+      return res.status(400).send({ message: 'User with that EMAIL already exist' });
+    }
+    return res.status(400).send(`${error} jsh`);
+  }
+});
+
 router.get('/:id', async(req, res) =>{
     const project = 'SELECT * FROM projects WHERE id=$1 order by id desc';
     console.log(req.params.id);
