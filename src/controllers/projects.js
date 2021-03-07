@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/vipgps', async (req, res) => {
-  const getAllQ = 'SELECT community,ward,lga,gps,status FROM projects where title=$1 and gps is not null order by id desc';
+  const getAllQ = 'SELECT community,ward,lga,gps,status FROM projects where title=$1 and gps is not null order by id asc';
   try {
     // const { rows } = qr.query(getAllQ);
     const { rows } = await db.query(getAllQ,['Sanitation']);
