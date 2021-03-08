@@ -159,7 +159,7 @@ router.get('/', async (req, res) => {
   req.body.role,
   req.body.lga,
   'active',
-  'users'
+  'supervisor'
   //moment(new Date()),
   ];
   try {
