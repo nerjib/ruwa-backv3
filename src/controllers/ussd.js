@@ -10,7 +10,7 @@ const moment = require('moment')
 
 
 router.get('/', async (req, res) => {
-    const getAllQ = `SELECT projects.title, projects.community, projects.ward, projects.lga, usdfeedback.fid, usdfeed.fault, usdfeedback.time, usdfeedback.sender FROM usdfeedback left join projects on usdfeedback.fid=projects.fid`;
+    const getAllQ = `SELECT projects.title, projects.community, projects.ward, projects.lga, usdfeedback.fid, usdfeedback.fault, usdfeedback.time, usdfeedback.sender FROM usdfeedback left join projects on usdfeedback.fid=projects.fid`;
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ);
