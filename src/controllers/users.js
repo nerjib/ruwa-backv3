@@ -147,8 +147,8 @@ router.get('/', async (req, res) => {
   //insert users
   router.post('/', async (req, res) => {
     const createUser = `INSERT INTO
-    users (last_name,first_name,other_name,phone,email,role,lga,active,type)
-    VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`;
+    users (last_name,first_name,other_name,phone,email,role,lga,active,type,actno,bank,edit)
+    VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *`;
   
   const values = [
   req.body.fname,
@@ -159,8 +159,10 @@ router.get('/', async (req, res) => {
   req.body.role,
   req.body.lga,
   'active',
-  'supervisor'
-  //moment(new Date()),
+  'supervisor',
+  '',
+  '',
+  ''
   ];
   try {
   const { rows } = await db.query(createUser, values);
