@@ -15,7 +15,7 @@ let myDetails={
     fault:''
   }
   
-  app.post('/', function(req,res){
+  router.post('/', function(req,res){
     const { sessionId, serviceCode, phoneNumber, text } = req.body;
   
     var webURL = 'http://kadruwassa.ng'
