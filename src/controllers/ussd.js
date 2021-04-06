@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/index');
+const moment = require('moment')
 
 
 
@@ -68,12 +69,13 @@ let myDetails={
     6. Allon sola ya fita
     7. wani matsala daban` 
   }else if (text===`2*1*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3,$4) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
-    phoneNumber
-    ];
+    phoneNumber,
+    moment(new Date())
+];
     try {
     const { rows } = await db.query(createFeedback, values);
   
@@ -84,12 +86,13 @@ let myDetails={
      ID: ${myDetails.fid}
      maatsala: ${lastData}  `
   }else if (text===`2*2*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3,$4) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
-    phoneNumber
-    ];
+    phoneNumber,
+    moment(new Date())
+];
     try {
     const { rows } = await db.query(createFeedback, values);
   
@@ -119,12 +122,13 @@ let myDetails={
     7. others`
   }else if (text===`1*1*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
   
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
-    phoneNumber
-    ];
+    phoneNumber,
+    moment(new Date())
+];
     try {
     const { rows } = await db.query(createFeedback, values);
   
@@ -136,12 +140,13 @@ let myDetails={
     Problem: ${lastData}  `
   }else if (text===`1*2*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
   
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
-    phoneNumber
-    ];
+    phoneNumber,
+    moment(new Date())
+];
     try {
     const { rows } = await db.query(createFeedback, values);
   
