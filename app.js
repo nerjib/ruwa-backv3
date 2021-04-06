@@ -94,7 +94,7 @@ res.json({
 })
 })
 
-//app.use('/api/v1/ussd', USSD);
+app.use('/api/v1/ussd', USSD);
 app.use('/api/v1/', Estimator);
 app.use('/api/v1/users', Users);
 app.use('/api/v1/projects', Projects);
