@@ -1,6 +1,4 @@
 const express = require('express');
-const moment = require ('moment')
-const request = require('request');
 const router = express.Router();
 const db = require('../db/index');
 
