@@ -26,7 +26,7 @@ const Reports = require('./src/controllers/reports');
 const Update = require('./src/controllers/updates')
 const VLC = require('./src/controllers/vlc')
 const SupaInfo = require('./src/controllers/supervisorinfo')
-const USSD = require('./src/controllers/ussd')
+//const USSD = require('./src/controllers/ussd')
 
 
 
@@ -94,7 +94,7 @@ res.json({
 })
 })
 
-app.use('/api/v1/ussd', USSD);
+//app.use('/api/v1/ussd', USSD);
 app.use('/api/v1/', Estimator);
 app.use('/api/v1/users', Users);
 app.use('/api/v1/projects', Projects);
