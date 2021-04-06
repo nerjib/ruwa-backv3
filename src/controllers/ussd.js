@@ -8,6 +8,22 @@ const db = require('../db/index');
 
 
 
+router.get('/', async (req, res) => {
+    const getAllQ = `SELECT * FROM usdfeedback`;
+    try {
+      // const { rows } = qr.query(getAllQ);
+      const { rows } = await db.query(getAllQ);
+      return res.status(201).send(rows);
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(400).send({ message: 'User with that EMAIL already exist' });
+      }
+      return res.status(400).send(`${error} jsh`);
+    }
+  });
+
+
+
 let myDetails={
     fid:'',
     lang: '',
@@ -99,8 +115,7 @@ let myDetails={
     3. Water not pumpimg to tank
     4. Hard to pump
     5. Leaking pipe
-    6. Solar panel vandalized
-  
+    6. Solar panel vandalized  
     7. others`
   }else if (text===`1*1*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
   
