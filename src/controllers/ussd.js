@@ -55,7 +55,7 @@ let myDetails={
     const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
-    myDetails.lastData,
+    lastData,
     phoneNumber
     ];
     try {
@@ -71,7 +71,7 @@ let myDetails={
     const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
-    myDetails.lastData,
+    lastData,
     phoneNumber
     ];
     try {
@@ -107,7 +107,7 @@ let myDetails={
     const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
-    myDetails.lastData,
+    lastData,
     phoneNumber
     ];
     try {
@@ -124,7 +124,7 @@ let myDetails={
     const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender) VALUES ($1,$2,$3) RETURNING *`;
     const values = [
     myDetails.fid,
-    myDetails.lastData,
+    lastData,
     phoneNumber
     ];
     try {
