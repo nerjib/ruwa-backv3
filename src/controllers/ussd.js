@@ -122,7 +122,7 @@ let myDetails={
     7. others`
   }else if (text===`1*1*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
   
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3,$4) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
@@ -140,7 +140,7 @@ let myDetails={
     Problem: ${lastData}  `
   }else if (text===`1*2*${myDetails.fid}*${lastData==='1'?'1':lastData==='2'?'2':lastData==='3'?'3':lastData==='4'?'4':lastData==='5'?'5':lastData==='6'?'6':'7'}`){
   
-    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3) RETURNING *`;
+    const createFeedback = `INSERT INTO   usdfeedback(fid,fault,sender,time) VALUES ($1,$2,$3,$4) RETURNING *`;
     const values = [
     myDetails.fid,
     lastData,
