@@ -467,7 +467,7 @@ const getVipArt = async()=>{
   const getAllQ = `update vipcov set tos=10,supers=20,finishing=15,artwork=10 from reports where vipcov.pid=reports.pid and vipcov.pid in (select pid from reports where pstatus=$1)`
   try {
     // const { rows } = qr.query(getAllQ);
-    const { rows } = await db.query(getAllQ,['Painting']);
+    const { rows } = await db.query(getAllQ,['artwork']);
    
     return rows;
   } catch (error) {
