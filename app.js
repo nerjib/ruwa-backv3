@@ -37,8 +37,14 @@ app.use(cors())
 
 http.createServer(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.json({limit: '20mb'}));
+app.use(express.urlencoded({ extended: false, limit: '20mb' }));
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 

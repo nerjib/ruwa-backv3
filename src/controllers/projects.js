@@ -79,7 +79,7 @@ router.get('/:id', async(req, res) =>{
   {
   //for app not to show done phases in task
   router.get('/localsupervisors/donephases/:id', async(req, res) =>{
-    const project = 'SELECT projects.id,projects.state_id,projects.local_id,projects.lga,projects.status,projects.started,projects.title,projects.gps,projects.contractor_id,projects.lot,projects.ward,projects.community,projects.phase,contractors.company FROM projects left join contractors on projects.contractor_id=contractors.id WHERE projects.local_id=$1 and projects.done=$2 order by phase desc';
+    const project = 'SELECT projects.id,projects.state_id,projects.local_id,projects.lga,projects.status,projects.started,projects.title,projects.gps,projects.contractor_id,projects.lot,projects.ward,projects.community,projects.phase,contractors.company,users.first_name,users.last_name,users.other_name,(select first_name as fn from users where users.id=projects.local_id),(select last_name as ln from users where users.id=projects.local_id),(select other_name as on from users where users.id=projects.local_id) FROM projects left join contractors on projects.contractor_id=contractors.id left join users on users.id=projects.state_id WHERE projects.local_id=$1 and projects.done=$2 order by phase desc';
    // console.log(req.params.id);
     try {
    //   console.log('dd')
@@ -121,7 +121,7 @@ router.get('/localsupervisors/donephases1/:id', async(req, res) =>{
 {
   // fro app not to show  state supdone phases in task
   router.get('/statesupervisors/donephases/:id', async(req, res) =>{
-    const project = 'SELECT projects.id,projects.state_id,projects.local_id,projects.lga,projects.status,projects.started,projects.title,projects.gps,projects.contractor_id,projects.lot,projects.ward,projects.community,projects.phase,contractors.company FROM projects left join contractors on projects.contractor_id=contractors.id WHERE projects.state_id=$1 and projects.done=$2 order by phase desc';
+    const project = 'SELECT projects.id,projects.state_id,projects.local_id,projects.lga,projects.status,projects.started,projects.title,projects.gps,projects.contractor_id,projects.lot,projects.ward,projects.community,projects.phase,contractors.company,users.first_name,users.last_name,users.other_name,(select first_name as fn from users where users.id=projects.local_id),(select last_name as ln from users where users.id=projects.local_id),(select other_name as on from users where users.id=projects.local_id) FROM projects left join contractors on projects.contractor_id=contractors.id left join users on users.id=projects.state_id WHERE projects.state_id=$1 and projects.done=$2 order by phase desc';
    // console.log(req.params.id);
     try {
    //   console.log('dd')
