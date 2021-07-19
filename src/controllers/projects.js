@@ -328,8 +328,7 @@ return res.status(400).send(error);
 
 
   router.get('/projectsfunctionality', async (req, res) => {
-    const getAllQ = `SELECT  projects.functionality,projects.lastdate,projects.started,projects.totalcov,projects.valuation,projects.gps,projects.community,projects.facility,projects.pstatus,projects.id,projects.title,projects.lga,projects.ward,projects.status, followupreports.functionality,followupreports.cause, followupreports.problem,followupreports.problemduration,
-    followupreports.remark, followupreports.cordinate,followupreports.time,followupreports.gentime from Projects left join followupreports on projects.id=followupreports.pid order by projects.title desc, projects.date desc, projects.id desc`;
+    const getAllQ = `SELECT  projects.functionality,projects.lastdate,projects.started,projects.totalcov,projects.valuation,projects.gps,projects.community,projects.facility,projects.pstatus,projects.id,projects.title,projects.lga,projects.ward,projects.status, followupreports.functionality,followupreports.cause, followupreports.problem,followupreports.problemduration,followupreports.remark, followupreports.cordinate,followupreports.time,followupreports.gentime from Projects left join followupreports on projects.id = followupreports.pid order by projects.title desc, projects.id desc`;
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ);
