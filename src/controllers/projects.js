@@ -297,7 +297,7 @@ return res.status(400).send(error);
   
   
   router.get('/completeprojects/all', async (req, res) => {
-    const getAllQ = 'SELECT  projects.functionality,projects.lastdate,projects.done,projects.started,projects.totalcov,users.actno,users.bank,projects.valuation,projects.phase,projects.gps,projects.local_id,projects.state_id,projects.community,projects.facility,projects.lot,projects.pstatus,projects.id,projects.title,projects.lga,projects.ward,projects.status,contractors.company,users.first_name,users.last_name,users.other_name,(select first_name as fn from users where users.id=projects.local_id),(select last_name as ln from users where users.id=projects.local_id),(select other_name as on from users where users.id=projects.local_id),(select actno as ac from users where users.id=projects.local_id),(select bank as bnk from users where users.id=projects.local_id) from Projects left join contractors on projects.contractor_id=contractors.id left join users on users.id=projects.state_id order by projects.lot asc, projects.id desc';
+    const getAllQ = 'SELECT  projects.functionality,projects.lastdate,projects.done,projects.started,projects.totalcov,users.actno,users.bank,projects.valuation,projects.phase,projects.gps,projects.local_id,projects.state_id,projects.community,projects.facility,projects.lot,projects.pstatus,projects.id,projects.title,projects.lga,projects.ward,projects.status,contractors.company,users.first_name,users.last_name,users.other_name,(select first_name as fn from users where users.id=projects.local_id),(select last_name as ln from users where users.id=projects.local_id),(select other_name as on from users where users.id=projects.local_id),(select actno as ac from users where users.id=projects.local_id),(select bank as bnk from users where users.id=projects.local_id) from Projects left join contractors on projects.contractor_id=contractors.id left join users on users.id=projects.state_id order by projects.date desc, projects.lot asc, projects.id desc';
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ);
@@ -324,6 +324,25 @@ return res.status(400).send(error);
       return res.status(400).send(`${error} jsh`);
     }
   });
+
+
+
+  router.get('/projectsfunctionality', async (req, res) => {
+    const getAllQ = `SELECT  projects.functionality,projects.lastdate,projects.started,projects.totalcov,projects.valuation,projects.gps,projects.community,projects.facility,projects.pstatus,projects.id,projects.title,projects.lga,projects.ward,projects.status, followupreports.functionality,followupreports.cause, followupreports.problem,followupreports.problemduration,
+    followupreports.remark, followupreports.cordinate,followupreports.time,followupreports.gentime from Projects left join followupreports on projects.id=followupreports.pid order by projects.title desc, projects.date desc, projects.id desc`;
+    try {
+      // const { rows } = qr.query(getAllQ);
+      const { rows } = await db.query(getAllQ);
+      return res.status(201).send(rows);
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(400).send({ message: 'User with that EMAIL already exist' });
+      }
+      return res.status(400).send(`${error} jsh`);
+    }
+  });
+
+
 
 
 
