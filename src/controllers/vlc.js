@@ -149,6 +149,25 @@ const updateprojectfunc = async(e,pid)=>{
     }
   });
 
+  router.get('/nonfunctionalprojects', async (req, res) => {
+    const getAllQ = `SELECT followupreports.functionality,followupreports.cause, followupreports.problem,followupreports.problemduration,
+    followupreports.remark,followupreports.cordinate,followupreports.time,followupreports.gentime,
+   followupreports.id as fid,
+    projects.lga,projects.ward,projects.community,projects.title,projects.id,projects.gps
+    FROM followupreports left join projects on projects.id = followupreports.pid  Where followupreports.status='accepted' order by followupreports.id desc`;
+    try {
+      // const { rows } = qr.query(getAllQ);
+      const { rows } = await db.query(getAllQ);
+      return res.status(201).send(rows);
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(400).send({ message: 'User with that EMAIL already exist' });
+      }
+      return res.status(400).send(`${error} jsh`);
+    }
+  });
+
+
 
 
   router.get('/followup/byprojects/:id', async (req, res) => {
