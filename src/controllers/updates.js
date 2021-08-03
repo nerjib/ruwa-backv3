@@ -126,6 +126,22 @@ const getHpbhDrilling = async()=>{
   }
 
 }
+const getHpbhCasing = async()=>{
+  const getAllQ = `update hpbhcov set gs=15,tos=10,drilling=25 from reports where hpbhcov.pid=reports.pid and hpbhcov.pid in (select pid from reports where pstatus=$1)`
+  try {
+    // const { rows } = qr.query(getAllQ);
+    const { rows } = await db.query(getAllQ,['Casing']);
+   
+    return rows;
+  } catch (error) {
+    if (error.routine === '_bt_check_unique') {
+      return ({ message: 'User with that EMAIL already exist' });
+    }
+    return (`${error} jsh`);
+
+  }
+
+}
 
   const getHpbhPt= async()=>{
     const getAllQ = `update hpbhcov set tos=10,gs=15,drilling=25,pt=5 from reports where hpbhcov.pid=reports.pid and hpbhcov.pid in (select pid from reports where pstatus=$1)`
@@ -343,7 +359,8 @@ router.get('/hpbh', async (req, res) => {
   let kk= await getHpbhPid() 
     let kk1= await getHpbhTos() 
     let kk2= await getHpbhGs() 
-    let kk3= await getHpbhDrilling() 
+    let kk3= await getHpbhDrilling()
+    let kk17= await getHpbhCasing() 
     let kk4= await getHpbhPt() 
     let kk5= await getHpbhPi() 
     let kk6= await getHpbhPlatforming()
@@ -711,6 +728,23 @@ const getSolarDrilling = async()=>{
   }
 
 }
+const getCasing = async()=>{
+  const getAllQ = `update solarcov set tos=10,gs=15,drilling=20 from reports where solarcov.pid=reports.pid and solarcov.pid in (select pid from reports where pstatus=$1)`
+  try {
+    // const { rows } = qr.query(getAllQ);
+    const { rows } = await db.query(getAllQ,['Casing']);
+   
+    return rows;
+  } catch (error) {
+    if (error.routine === '_bt_check_unique') {
+      return ({ message: 'User with that EMAIL already exist' });
+    }
+    return (`${error} jsh`);
+
+  }
+
+}
+
 
 const getSolarPT = async()=>{
   const getAllQ = `update solarcov set tos=10,gs=15,drilling=20,pt=5 from reports where solarcov.pid=reports.pid and solarcov.pid in (select pid from reports where pstatus=$1)`
@@ -923,6 +957,7 @@ router.get('/solar', async (req, res) => {
     let kk1= await getSolarTos()
     let kk2= await getSolarGS() 
     let kk3= await getSolarDrilling() 
+    let kk17= await getCasing() 
     let kk5= await getSolarPT() 
     let kk6= await getSolarFS()
     let kk10= await getSolarES()
