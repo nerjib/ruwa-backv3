@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 
 
   router.get('/lots/:title/:phase', async (req, res) => {
-    const getAllQ = `SELECT distinct lot from projects where title=$1 and phase=$2 ORDER BY NULLIF(regexp_replace(lot, '\D', '', 'g'), '')::int`;
+    const getAllQ = 'SELECT distinct lot from projects where title=$1 and phase=$2 order by lot asc';
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ, [req.params.title, req.params.phase]);
