@@ -44,6 +44,21 @@ router.post('/', async (req, res) => {
   });  
 
 
+  router.get('/lots/:title/:phase', async (req, res) => {
+    const getAllQ = 'SELECT distintct lot from projects where title=$1 and phase=$2';
+    try {
+      // const { rows } = qr.query(getAllQ);
+      const { rows } = await db.query(getAllQ, [req.params.title, req.params.phase]);
+      return res.status(201).send(rows);
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(400).send({ message: 'User with that EMAIL already exist' });
+      }
+      return res.status(400).send(`${error} jsh`);
+    }
+  });  
+
+
 
 
 module.exports = router;
