@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 
 
   router.get('/lots/:title/:phase', async (req, res) => {
-    const getAllQ = 'SELECT distintct lot from projects where title=$1 and phase=$2';
+    const getAllQ = 'SELECT distinct lot from projects where title=$1 and phase=$2';
     try {
       // const { rows } = qr.query(getAllQ);
       const { rows } = await db.query(getAllQ, [req.params.title, req.params.phase]);
