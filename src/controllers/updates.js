@@ -1119,7 +1119,7 @@ router.post('/updatestatus', async (req, res) => {
 });
 
 router.post('/changesuper', async (req, res) => {
-  const getAllQ = 'UPDATE projects set local_id=$1 where title = $2 and phase=$3 and lot=$4';
+  const getAllQ = 'UPDATE projects set local_id=$1 where title=$2 and phase=$3 and lot=$4';
   try {
     // const { rows } = qr.query(getAllQ);
     const { rows } = await db.query(getAllQ,[req.body.superid,req.body.title, req.body.phase, req.body.lot]);
@@ -1148,8 +1148,8 @@ router.delete('/deleteprojects/:phase/:lot/:title', async (req, res) => {
   const deleteP = 'DELETE from projects  where phase=$1 and lot=$2 and title=$3'
   try {
     // const { rows } = qr.query(getAllQ);
-     await db.query(deleteP,[req.params.phase]);
-    return res.status(201).send('sucess');
+     await db.query(deleteP,[req.params.phase,req.params.lot,req.params.title]);
+    return res.status(201).send('successful');
   } catch (error) {
       return res.status(400).send({ message: 'User with that EMAIL already exist' });
    
