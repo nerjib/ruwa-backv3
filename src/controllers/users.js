@@ -185,12 +185,14 @@ router.get('/', async (req, res) => {
   
   router.post('/admin', async (req, res) => {
     const createUser = `INSERT INTO
-    admin (email,phone,role)
-    VALUES ($1, $2) RETURNING *`;
+    admin (email,phone,role,acttype)
+    VALUES ($1, $2,$3,$4) RETURNING *`;
   
   const values = [
   req.body.email,
-  req.body.phone
+  req.body.phone,
+  'admin',
+  'user'
   ];
   try {
   const { rows } = await db.query(createUser, values);
