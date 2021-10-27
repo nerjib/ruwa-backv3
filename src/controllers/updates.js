@@ -1119,7 +1119,7 @@ router.post('/updatestatus', async (req, res) => {
 });
 
 router.post('/changesuper', async (req, res) => {
-  const getAllQ = 'UPDATE projects set local_id=$1 where title = $2 and phase=$3 and lot=$4';
+  const getAllQ = 'UPDATE projects set local_ id=$1 where title = $2 and phase=$3 and lot=$4';
   try {
     // const { rows } = qr.query(getAllQ);
     const { rows } = await db.query(getAllQ,[req.body.superid,req.body.title, req.body.phase, req.body.lot]);
