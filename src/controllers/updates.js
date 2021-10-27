@@ -1144,5 +1144,17 @@ router.delete('/deletephase/:phase', async (req, res) => {
   }
 })
 
+router.delete('/deleteprojects/:phase/:lot/:title', async (req, res) => {
+  const deleteP = 'DELETE from projects  where phase=$1 and lot=$2 and title=$3'
+  try {
+    // const { rows } = qr.query(getAllQ);
+     await db.query(deleteP,[req.params.phase]);
+    return res.status(201).send('sucess');
+  } catch (error) {
+      return res.status(400).send({ message: 'User with that EMAIL already exist' });
+   
+  }
+})
+
 
 module.exports = router;
