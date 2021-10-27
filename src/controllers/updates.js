@@ -1118,6 +1118,20 @@ router.post('/updatestatus', async (req, res) => {
   }
 });
 
+router.post('/changesuper', async (req, res) => {
+  const getAllQ = 'UPDATE projects set local_id=$1 where title = $2 and phase=$3 and lot=$4';
+  try {
+    // const { rows } = qr.query(getAllQ);
+    const { rows } = await db.query(getAllQ,[req.body.superid,req.body.title, req.body.phase, req.body.lot]);
+    return res.status(201).send(rows);
+  } catch (error) {
+    if (error.routine === '_bt_check_unique') {
+      return res.status(400).send({ message: 'User with that EMAIL already exist' });
+    }
+    return res.status(400).send(`${error} jsh`);
+  }
+});
+
 
 
 module.exports = router;
