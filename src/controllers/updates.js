@@ -1136,7 +1136,7 @@ router.delete('/deletephase/:phase',async (req, res) => {
   const deleteP = 'DELETE from phases where phase=$1'
   try {
     // const { rows } = qr.query(getAllQ);
-    const { rows } = await db.query(deleteP,[req.params.phase]);
+     await db.query(deleteP,[req.params.phase]);
     return res.status(201).send('sucess');
   } catch (error) {
     if (error.routine === '_bt_check_unique') {
