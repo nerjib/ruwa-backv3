@@ -1132,17 +1132,15 @@ router.post('/changesuper', async (req, res) => {
   }
 });
 
-router.delete('/deletephase/:phase',async (req, res) => {
+router.delete('/deletephase/:phase', async (req, res) => {
   const deleteP = 'DELETE from phases where phase=$1'
   try {
     // const { rows } = qr.query(getAllQ);
      await db.query(deleteP,[req.params.phase]);
     return res.status(201).send('sucess');
   } catch (error) {
-    if (error.routine === '_bt_check_unique') {
       return res.status(400).send({ message: 'User with that EMAIL already exist' });
-    }
-    return res.status(400).send(`${error} jsh`);
+   
   }
 })
 
