@@ -27,6 +27,8 @@ const Update = require('./src/controllers/updates')
 const VLC = require('./src/controllers/vlc')
 const SupaInfo = require('./src/controllers/supervisorinfo')
 const USSD = require('./src/controllers/ussd')
+const ODF = require('./src/controllers/odf')
+
 
 
 
@@ -116,6 +118,8 @@ app.use('/api/v1/reports', Reports);
 app.use('/api/v1/vlc', VLC);
 app.use('/api/v1/update', Update);
 app.use('/api/v1/superinfo', SupaInfo);
+app.use('/api/v1/odf', ODF);
+
 
 
 
